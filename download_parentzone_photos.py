@@ -67,12 +67,12 @@ def get_parentzone_photos(email, password, output_folder):
 
         # For each image that we've found
         for element in media_elements:
-            image_url = element.get_attribute('src').replace("/thumbnail", "")
+            image_url = element.get_attribute('src').replace("/thumbnail", "/full")
             print(image_url)
-            image_id = image_url[image_url.rfind("/") + 1:image_url.find("?")]
-            
+                        
             # Skip images not from gallery
             if (image_url.__contains__("api.parentzone.me/v1/media")):
+                image_id = image_url[image_url.rfind("media/") + 6:image_url.find("/full")]
 
                 if int(image_id) < lowest_image_id:
                     lowest_image_id = int(image_id)
